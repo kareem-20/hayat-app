@@ -1,0 +1,39 @@
+.container {
+  padding: 20px 16px;
+}
+
+.title {
+  font-family: "bold";
+  font-size: 20px;
+}
+
+ion-item {
+  margin-bottom: 16px;
+  .img-start {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #df1b3333;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-inline-end: 12px;
+  }
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+ion-button {
+  font-size: 18px;
+  font-family: "bold";
+  flex-basis: 100%;
+  border-radius: 5px;
+  background: #df1b33;
+  --border-radius: 5px;
+  --background: #df1b33;
+  color: #fff;
+  height: 50px;
+  margin-top: 20px;
+}

@@ -1,0 +1,14 @@
+.logo {
+  margin-top: 20%;
+}
+.footer {
+  display: flex;
+  direction: ltr;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  img:last-of-type {
+    margin-inline-start: -70px;
+  }
+}

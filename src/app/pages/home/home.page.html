@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-searchbar mode="ios" slot="start" placeholder="بحث"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button>
+        <img src="../../../assets/cart.svg" alt="">
+      </ion-button>
+      <ion-button>
+        <img src="../../../assets/fav.svg" alt="">
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="../../../assets/Screenshot 2023-07-15 192803.png" alt="">
+
+  <swiper-container [config]="slideOpts" [loop]="true">
+    <swiper-slide>
+      <!-- <ion-skeleton-text animated></ion-skeleton-text> -->
+      <img src="../../../assets/laura-chouette-mfvTtNPjoPY-unsplash.png" alt="">
+    </swiper-slide>
+    <!-- <swiper-slide>
+      <img src="../../../assets/laura-chouette-mfvTtNPjoPY-unsplash.png" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../../../assets/laura-chouette-mfvTtNPjoPY-unsplash.png" alt="">
+    </swiper-slide> -->
+  </swiper-container>
+
+  <div class="container">
+    <div class="title">
+      <h2>
+        الاقسام
+      </h2>
+    </div>
+
+
+    <div class="items">
+      <div class="item ion-activatable" (click)="nav('products')">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/body-lotion.png" alt="">
+        </div>
+      </div>
+      <div class="item ion-activatable">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/beauty-treatment.png" alt="">
+        </div>
+      </div>
+      <div class="item ion-activatable">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/face-wash.png" alt="">
+        </div>
+      </div>
+
+      <div class="item ion-activatable">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/gift-box.png" alt="">
+        </div>
+      </div>
+
+      <div class="item ion-activatable">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/hair-dryer.png" alt="">
+        </div>
+      </div>
+
+      <div class="item ion-activatable">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/lipstick.png" alt="">
+        </div>
+      </div>
+      <div class="item ion-activatable">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/perfume-bottle.png" alt="">
+        </div>
+      </div>
+      <div class="item ion-activatable">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <p>جديد</p>
+        <div class="image">
+          <img src="../../../assets/images/perfume.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

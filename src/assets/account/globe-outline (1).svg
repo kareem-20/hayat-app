@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.077" height="24.077" viewBox="0 0 24.077 24.077">
+  <g id="globe-outline_1_" data-name="globe-outline (1)" transform="translate(0.75 0.75)">
+    <path id="Path_58029" data-name="Path 58029" d="M59.289,48A11.289,11.289,0,1,0,70.577,59.289,11.289,11.289,0,0,0,59.289,48Z" transform="translate(-48 -48)" fill="none" stroke="#000" stroke-width="1.5"/>
+    <path id="Path_58030" data-name="Path 58030" d="M149.445,48c-3.152,0-6.115,5.054-6.115,11.289s2.963,11.289,6.115,11.289,6.115-5.054,6.115-11.289S152.6,48,149.445,48Z" transform="translate(-138.156 -48)" fill="none" stroke="#000" stroke-width="1.5"/>
+    <path id="Path_58031" data-name="Path 58031" d="M117.33,117.33a13.216,13.216,0,0,0,15.052,0m0,15.052a13.216,13.216,0,0,0-15.052,0" transform="translate(-113.567 -113.567)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_58032" data-name="Path 58032" d="M59.289,48V70.577M70.577,59.289H48" transform="translate(-48 -48)" fill="none" stroke="#000" stroke-width="1.5"/>
+  </g>
+</svg>
