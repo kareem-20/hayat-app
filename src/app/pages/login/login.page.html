@@ -5,26 +5,29 @@
     <div class="logo">
       <img src="../../../assets/splash/logo.png" alt="">
     </div>
-    <ion-item>
-      <div class="img-start">
-        <img src="../../../assets/login/Icon feather-user.svg" />
-      </div>
-      <div class="content">
-        <p>اسم المستخدم</p>
-        <ion-input placeholder="Enter text"></ion-input>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div class="img-start">
-        <img src="../../../assets/login/Icon material-lock-outline.svg" />
-      </div>
-      <div class="content">
-        <p>كلمة المرور</p>
-        <ion-input placeholder="Enter text"></ion-input>
-      </div>
-    </ion-item>
+    <form [formGroup]="form">
 
-    <ion-button mode="ios" expand="block" fill="clear" (click)="nav('tabs/home')">
+      <ion-item>
+        <div class="img-start">
+          <img src="../../../assets/login/Icon feather-user.svg" />
+        </div>
+        <div class="content">
+          <p>اسم المستخدم</p>
+          <ion-input formControlName="username" placeholder="Enter text"></ion-input>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div class="img-start">
+          <img src="../../../assets/login/Icon material-lock-outline.svg" />
+        </div>
+        <div class="content">
+          <p>كلمة المرور</p>
+          <ion-input formControlName="password" placeholder="Enter text"></ion-input>
+        </div>
+      </ion-item>
+    </form>
+
+    <ion-button mode="ios" expand="block" fill="clear" (click)="login()">
       تسجيل الدخول
     </ion-button>
   </div>
