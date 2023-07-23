@@ -6,8 +6,9 @@ import { take } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DataService {
+  settings: any;
   private params: any = {};
-  baseURL: string = 'http://localhost:5631/api';
+  baseURL: string = 'http://209.250.237.58:5635/api';
 
   constructor(private http: HttpClient) {}
 

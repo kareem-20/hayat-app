@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "541932648065",
+    "project_id": "alhayat-1c997",
+    "storage_bucket": "alhayat-1c997.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541932648065:android:79f1cd2c8e24d9ca487f80",
+        "android_client_info": {
+          "package_name": "com.alhayat.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541932648065-006sac6663eusv68cv2pqhev5v6gmhda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlxx5b_75glBdwo78DkHbOZ14zKxtuxUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541932648065-006sac6663eusv68cv2pqhev5v6gmhda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

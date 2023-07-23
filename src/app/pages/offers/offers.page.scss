@@ -45,6 +45,11 @@
       .price {
         color: #df1b33;
         font-size: 18px;
+        margin-top: 0;
+      }
+      p.discount {
+        margin-bottom: 0;
+        font-size: 16px;
       }
     }
     ion-button {

@@ -69,7 +69,18 @@
         <img src="../../../assets/account/chevron-forward-outline.svg" alt="">
       </div>
     </div>
+    <div class="line">
+      <div class="start">
+        <ion-icon slot="start" [name]="darkOn?'moon':'moon-outline'"></ion-icon>
+        <p>دارك مود</p>
+      </div>
+      <div class="end">
 
+        <ion-toggle #myToggle mode="ios" color="success" slot="end" id="themeToggle" [checked]="darkOn"
+          (ionChange)="changeTheme($event)">
+        </ion-toggle>
+      </div>
+    </div>
     <div class="footer_box">
       <p>تابعونا على</p>
       <div class="btns">
@@ -82,6 +93,7 @@
         <div class="box">
           <img src="../../../assets/account/Icon awesome-facebook-messenger.png" alt="">
         </div>
+
       </div>
     </div>
   </div>

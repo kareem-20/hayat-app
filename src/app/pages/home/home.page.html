@@ -17,16 +17,10 @@
   <img src="../../../assets/Screenshot 2023-07-15 192803.png" alt="">
 
   <swiper-container [config]="slideOpts" [loop]="true">
-    <swiper-slide>
-      <!-- <ion-skeleton-text animated></ion-skeleton-text> -->
-      <img src="../../../assets/laura-chouette-mfvTtNPjoPY-unsplash.png" alt="">
+    <swiper-slide *ngFor="let slider of sliders" (click)="openSlideDetail(slider)">
+      <img [src]="slider?.image" alt="">
     </swiper-slide>
-    <!-- <swiper-slide>
-      <img src="../../../assets/laura-chouette-mfvTtNPjoPY-unsplash.png" alt="">
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../../../assets/laura-chouette-mfvTtNPjoPY-unsplash.png" alt="">
-    </swiper-slide> -->
+
   </swiper-container>
 
   <div class="container">
@@ -38,17 +32,16 @@
 
 
     <div class="items">
-      <div class="item ion-activatable" (click)="nav('products')">
+      <div class="item ion-activatable" *ngFor="let cat of categories" (click)="openCategory(cat)">
         <ion-ripple-effect type="bounded"></ion-ripple-effect>
 
-        <p>جديد</p>
+        <p>{{cat?.name}}</p>
         <div class="image">
-          <img src="../../../assets/images/body-lotion.png" alt="">
+          <img [src]="cat?.image" alt="">
         </div>
       </div>
-      <div class="item ion-activatable">
+      <!-- <div class="item ion-activatable">
         <ion-ripple-effect type="bounded"></ion-ripple-effect>
-
         <p>جديد</p>
         <div class="image">
           <img src="../../../assets/images/beauty-treatment.png" alt="">
@@ -102,7 +95,7 @@
         <div class="image">
           <img src="../../../assets/images/perfume.png" alt="">
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </ion-content>

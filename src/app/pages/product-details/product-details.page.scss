@@ -7,6 +7,15 @@ ion-header::after {
 }
 
 .product_box {
+  .image_box {
+    height: 250px;
+    img {
+      display: block;
+      margin: auto;
+      object-fit: cover;
+      height: 100%;
+    }
+  }
   h4 {
     font-size: 18px;
     font-family: "bold";

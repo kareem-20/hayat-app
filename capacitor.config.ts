@@ -1,12 +1,13 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.alhayat.app',
   appName: 'hayat-app',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
-  }
+    cleartext: true,
+    allowNavigation: ['*'],
+  },
 };
 
 export default config;

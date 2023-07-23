@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-forward-outline"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-searchbar mode="ios" slot="start" placeholder="بحث"></ion-searchbar> -->
+    <ion-title>البراندات</ion-title>
 
-    <ion-searchbar mode="ios" slot="start" placeholder="بحث"></ion-searchbar>
     <ion-buttons slot="end">
       <ion-button>
         <img src="../../../assets/cart.svg" alt="">
@@ -14,7 +18,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="container">
+
     <ion-item>
       <ion-input type="text" placeholder="حدد البراند الذي تريده هنا"></ion-input>
       <ion-icon slot="end" name="close"></ion-icon>
@@ -23,13 +31,13 @@
       <h2>اختر من بين مئات البراندات</h2>
     </div>
     <div class="brands">
-      <div class="brand">
+      <div class="brand" *ngFor="let brand of brands" (click)="openProducts(brand)">
         <div class="image">
-          <img src="../../../assets/brands/icons8-add-product-48-1.png" alt="">
+          <img [src]="brand?.image" alt="">
         </div>
-        <p>J'adore Dior</p>
+        <p>{{brand?.name}}</p>
       </div>
-      <div class="brand">
+      <!-- <div class="brand">
         <div class="image">
           <img src="../../../assets/brands/icons8-add-product-48-2.png" alt="">
         </div>
@@ -58,7 +66,28 @@
           <img src="../../../assets/brands/icons8-add-product-48.png" alt="">
         </div>
         <p>J'adore Dior</p>
-      </div>
+      </div> -->
+    </div>
+  </div>
+  <div *ngIf="loading" class="loading">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+
+  <div *ngIf="emptyView" class="error-view">
+    <div class="content">
+      <ion-icon name="happy-outline"></ion-icon>
+      <ion-text color="medium">
+        <p>لا يوجد براندات حاليا</p>
+      </ion-text>
+    </div>
+  </div>
+
+  <div *ngIf="errorView" class="error-view">
+    <div class="content">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <ion-text color="medium">
+        <p>خطأ بالشبكة يرجي المحاولة لاحقاً</p>
+      </ion-text>
     </div>
   </div>
 </ion-content>

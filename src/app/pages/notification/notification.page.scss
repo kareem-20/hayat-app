@@ -1,0 +1,40 @@
+ion-header {
+  ion-title {
+    font-family: 'bold';
+    color: #fff;
+    font-size: 18px;
+  }
+}
+
+ion-list {
+  ion-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  ion-label {
+    h3 {
+      margin-block: 12px 8px;
+      font-family: 'bold';
+      font-size: 18px;
+    }
+
+    p {
+      // margin-block: 12px;
+    }
+  }
+
+  ion-text {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    justify-content: end;
+    gap: 24px;
+
+    ion-badge {
+      width: fit-content;
+      margin-inline-start: auto;
+
+    }
+  }
+}

@@ -3,7 +3,10 @@
     <ion-buttons slot="start">
       <ion-back-button icon="arrow-forward-outline"></ion-back-button>
     </ion-buttons>
-
+    <ion-button slot="start" fill="clear" *ngIf="slide==true" (click)="dismiss()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+    <ion-title>تفاصيل المنتج</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,30 +15,29 @@
     <div class="product_box">
 
       <div class="image_box">
-        <img src="../../../assets/82829_SCMOI_Closed_R.png" alt="">
+        <img [src]="item?.image" alt="">
       </div>
-      <h4>Sony Playstation 5 disc version with extra Dualsense- cottroller Bundle</h4>
-      <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو
-        شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك</p>
+      <h4>{{item?.name}}</h4>
+      <p>{{item?.description}}</p>
 
       <div class="price">
-        658,000 د.ع
+        {{item?.price}} د.ع
       </div>
     </div>
-    <div class="title">منتجات مشابهة</div>
+    <div class="title" *ngIf="similars?.length">منتجات مشابهة</div>
     <div class="products">
-      <div class="product" *ngFor="let item of [1,2,3,4,5,6]">
+      <div class="product" *ngFor="let item of similars">
 
         <div class="img">
-          <img src="../../../assets/offers/82829_SCMOI_Closed_R-1.png" />
+          <img [src]="item?.image" alt="">
         </div>
         <div class="text">
-          <p class="name">HUAWEI Phone</p>
+          <p class="name">{{item?.name}}</p>
           <div class="note">
-            <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى</p>
+            <p>{{item?.description}}</p>
           </div>
           <div class="price">
-            <h2>658.000</h2>
+            <h2>{{item?.price}}</h2>
             <span>دع</span>
           </div>
           <ion-button mode="ios" expand="block" color="light" fill="solid">

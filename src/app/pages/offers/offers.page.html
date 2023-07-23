@@ -13,7 +13,23 @@
 
     <div class="items_box">
 
-      <div class="item_box">
+      <div class="item_box" *ngFor="let item of products;let i = index;trackBy:trackFn">
+        <div class="image" (click)="detailsItem(item,i) ">
+          <img [src]="item?.image" alt="">
+        </div>
+        <div class="body_item" (click)="detailsItem(item,i) ">
+          <h2>{{item?.name}}</h2>
+          <p>{{item?.description}}</p>
+          <p class="discount"> <del>{{item?.price}} </del> </p>
+          <p class="price">{{item?.discountPrice}} د.ع</p>
+
+        </div>
+        <ion-button mode="ios" expand="block" color="light" fill="solid">
+          تواصل عبر
+          <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
+        </ion-button>
+      </div>
+      <!-- <div class="item_box">
         <div class="image">
           <img src="../../../assets/offers/82829_SCMOI_Closed_R-1.png" alt="">
         </div>
@@ -59,23 +75,7 @@
           تواصل عبر
           <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
         </ion-button>
-      </div>
-
-      <div class="item_box">
-        <div class="image">
-          <img src="../../../assets/offers/82829_SCMOI_Closed_R-1.png" alt="">
-        </div>
-        <div class="body_item">
-          <h2>HUAWEI Phone</h2>
-          <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى</p>
-          <p class="price">658.000 د.ع</p>
-
-        </div>
-        <ion-button mode="ios" expand="block" color="light" fill="solid">
-          تواصل عبر
-          <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
-        </ion-button>
-      </div>
+      </div> -->
     </div>
 
   </div>
