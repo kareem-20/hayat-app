@@ -7,6 +7,9 @@ import { take } from 'rxjs/operators';
 })
 export class DataService {
   settings: any;
+  whatsapp: string;
+  instagram: string;
+  messenger: string;
   private params: any = {};
   baseURL: string = 'http://209.250.237.58:5635/api';
 

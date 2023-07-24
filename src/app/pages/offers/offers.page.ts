@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { NavController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
+import { HelpersService } from 'src/app/services/helpers/helpers.service';
 
 @Component({
   selector: 'app-offers',
@@ -14,14 +16,18 @@ export class OffersPage implements OnInit {
   emptyView: boolean = false;
   searchQuery: string = '';
   skip: number = 0;
+  whatsapp: string;
   constructor(
     private navCtrl: NavController,
-    private dataService: DataService
+    private dataService: DataService,
+    private helpers: HelpersService,
+    private iab: InAppBrowser
   ) {}
 
   ngOnInit() {}
   ionViewWillEnter() {
     this.getProducts();
+    this.whatsapp = this.dataService.whatsapp;
   }
   getProducts(ev?: any) {
     this.dataService.getData(this.endPoint).subscribe(
@@ -45,7 +51,12 @@ export class OffersPage implements OnInit {
 
     return url.replace('&', '?');
   }
-
+  async openWhatsapp(item: any) {
+    const msg = `${item?.name}\n${item?.description}\n${item?.price}`;
+    if (this.whatsapp)
+      this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
+    else this.helpers.presentToast('الوتساب غير مفعل حاليا');
+  }
   showContentView(ev?: any) {
     this.loading = false;
     this.errorView = false;

@@ -19,13 +19,17 @@ export class SplashPage implements OnInit {
     private dataService: DataService
   ) {
     setTimeout(() => {
-      this.checkUser();
+      // this.checkUser();
+      this.initApp();
       this.getSetting();
     }, 3000);
   }
 
   ngOnInit() {}
-
+  async initApp() {
+    await this.fcmService.initPush();
+    await this.navCtrl.navigateRoot('/tabs/home');
+  }
   async checkUser() {
     const user = await this.storage.get('user');
     console.log(user);
@@ -43,6 +47,9 @@ export class SplashPage implements OnInit {
   getSetting() {
     this.dataService.getData('/settings/').subscribe((res: any) => {
       this.dataService.settings = res;
+      this.dataService.whatsapp = res.whatsapp;
+      this.dataService.instagram = res.instagram;
+      this.dataService.messenger = res.messenger;
     });
   }
 }

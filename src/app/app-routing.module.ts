@@ -41,6 +41,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/brands/brands.module').then((m) => m.BrandsPageModule),
   },
+  {
+    path: 'notification',
+    loadChildren: () =>
+      import('./pages/notification/notification.module').then(
+        (m) => m.NotificationPageModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -40,7 +40,7 @@
             <h2>{{item?.price}}</h2>
             <span>دع</span>
           </div>
-          <ion-button mode="ios" expand="block" color="light" fill="solid">
+          <ion-button mode="ios" expand="block" color="light" fill="solid" (click)="openWhatsapp(item)">
             تواصل عبر
             <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
           </ion-button>
@@ -50,7 +50,7 @@
   </div>
   <div class="footer_box">
 
-    <ion-button mode="ios" expand="block" fill="solid" shape="round">
+    <ion-button mode="ios" expand="block" fill="solid" shape="round" (click)="openWhatsapp(item)">
       تواصل عبر
       <img slot="end" src="../../../assets/account/logo-whatsapp (1).png" alt="">
     </ion-button>

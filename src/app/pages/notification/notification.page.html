@@ -1,16 +1,10 @@
 <ion-header mode="md">
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button mode="ios" (click)="back()">
-        <img src="../../../assets/images/sign/back.svg">
-      </ion-button>
+      <ion-back-button icon="arrow-forward-outline"></ion-back-button>
     </ion-buttons>
     <ion-title slot="start">الاشعارات</ion-title>
-    <ion-buttons slot="end">
-      <ion-button mode="ios">
-        <img class="noti" src="../../../assets/images/menu.png" alt="" (click)="navigate('menu')">
-      </ion-button>
-    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -30,7 +24,7 @@
         <p>{{noti.body}}</p>
       </ion-label>
       <ion-text slot="end" color="primary">
-        <ion-badge *ngIf="!noti?.seen" color="primary" mode="ios">unread</ion-badge>
+        <!-- <ion-badge *ngIf="!noti?.seen" color="primary" mode="ios">unread</ion-badge> -->
         <sub>{{noti?.createdAt | date:'d/M/yy, h:mm a'}}</sub>
       </ion-text>
     </ion-item>

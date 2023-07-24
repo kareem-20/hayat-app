@@ -20,12 +20,12 @@
         <img src="../../../assets/account/chevron-forward-outline.svg" alt="">
       </div>
     </div>
-    <div class="line ion-activatable">
+    <div class="line ion-activatable" (click)="nav('/notification')">
       <ion-ripple-effect type="bounded"></ion-ripple-effect>
 
       <div class="start">
         <img src="../../../assets/account/Icon ionic-ios-notifications-outline.svg" alt="">
-        <p>التنبيهات</p>
+        <p>الاشعارات</p>
       </div>
       <div class="end">
         <img src="../../../assets/account/chevron-forward-outline.svg" alt="">
@@ -47,7 +47,7 @@
         <img src="../../../assets/account/chevron-forward-outline.svg" alt="">
       </div>
     </div>
-    <div class="line ion-activatable">
+    <div class="line ion-activatable" (click)="openWhatsapp()">
       <ion-ripple-effect type="bounded"></ion-ripple-effect>
 
       <div class="start">
@@ -84,13 +84,13 @@
     <div class="footer_box">
       <p>تابعونا على</p>
       <div class="btns">
-        <div class="box">
+        <div class="box" (click)="openWhatsapp()">
           <img src="../../../assets/account/logo-whatsapp (1).png" alt="">
         </div>
-        <div class="box">
+        <div class="box" (click)="openinstagram()">
           <img src="../../../assets/account/Icon awesome-instagram.png" alt="">
         </div>
-        <div class="box">
+        <div class="box" (click)="openmessenger()">
           <img src="../../../assets/account/Icon awesome-facebook-messenger.png" alt="">
         </div>
 

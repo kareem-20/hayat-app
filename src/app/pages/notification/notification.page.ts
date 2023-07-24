@@ -17,16 +17,15 @@ export class NotificationPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private dataService: DataService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   ionViewWillEnter() {
-    this.getNotification()
+    this.getNotification();
   }
 
   back() {
-    this.navCtrl.pop()
+    this.navCtrl.pop();
   }
 
   navigate(route) {
@@ -34,27 +33,31 @@ export class NotificationPage implements OnInit {
   }
 
   getNotification(ev?: any) {
-    this.dataService.getData(this.endPoint)
-      .subscribe((res: any) => {
+    this.dataService.getData(this.endPoint).subscribe(
+      (res: any) => {
         console.log(res);
 
         this.notification = this.skip ? this.notification.concat(res) : res;
-        this.notification.length ? this.showContentView(ev) : this.showEmptyView(ev);
-        this.disableInfinity = res?.length == 0
-      }, (err) => {
-        this.showErrorView()
-      })
+        this.notification.length
+          ? this.showContentView(ev)
+          : this.showEmptyView(ev);
+        this.disableInfinity = res?.length == 0;
+      },
+      (err) => {
+        this.showErrorView();
+      }
+    );
   }
 
   get endPoint() {
-    let url = `/noti`
+    let url = `/fcm`;
     if (this.skip) url += `?skip=${this.skip}`;
 
     return url;
   }
   doRefresh(ev?: any) {
-    this.getNotification()
-    ev.target.complete()
+    this.getNotification();
+    ev.target.complete();
   }
   showContentView(ev?: any) {
     this.loading = false;
@@ -78,14 +81,13 @@ export class NotificationPage implements OnInit {
     if (ev) ev.target.complete();
   }
 
-
   loadData(ev?: any) {
     this.skip += 1;
-    this.getNotification(ev)
+    this.getNotification(ev);
   }
 
   details(noti) {
-    this.dataService.addParams = { noti }
-    this.navCtrl.navigateForward('notification-details')
+    // this.dataService.addParams = { noti }
+    // this.navCtrl.navigateForward('notification-details')
   }
 }

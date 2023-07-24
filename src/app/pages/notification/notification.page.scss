@@ -1,12 +1,15 @@
 ion-header {
   ion-title {
-    font-family: 'bold';
-    color: #fff;
+    font-family: "bold";
+    // color: #fff;
     font-size: 18px;
   }
 }
 
 ion-list {
+  background: transparent;
+  --background: transparent;
+
   ion-avatar {
     width: 60px;
     height: 60px;
@@ -15,7 +18,7 @@ ion-list {
   ion-label {
     h3 {
       margin-block: 12px 8px;
-      font-family: 'bold';
+      font-family: "bold";
       font-size: 18px;
     }
 
@@ -34,7 +37,6 @@ ion-list {
     ion-badge {
       width: fit-content;
       margin-inline-start: auto;
-
     }
   }
 }
