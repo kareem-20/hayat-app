@@ -3,6 +3,7 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { NavController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { HelpersService } from 'src/app/services/helpers/helpers.service';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-products',
@@ -63,9 +64,31 @@ export class ProductsPage implements OnInit {
   }
   async openWhatsapp(item: any) {
     const msg = `${item?.name}\n${item?.description}\n${item?.price}`;
-    if (this.whatsapp)
+    if (this.whatsapp) {
       this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
-    else this.helpers.presentToast('الوتساب غير مفعل حاليا');
+      // await Share.share({
+      //   title: item?.name,
+      //   text: item?.description,
+      //   url: item?.image,
+      // });
+    } else this.helpers.presentToast('الوتساب غير مفعل حاليا');
+  }
+
+  async redirectToWhatsApp(item: any) {
+    const phoneNumber = '+201066655063';
+    const message = item?.name + '\n' + item?.description;
+    const imageUrl = item?.image;
+    // WhatsApp Web API Endpoint
+    const whatsappApiUrl = 'https://wa.me';
+
+    // Encode the message and image URL
+    const encodedMessage = encodeURIComponent(message);
+    const encodedImageUrl = encodeURIComponent(imageUrl);
+
+    // Create the WhatsApp share link
+    const whatsappUrl = `${whatsappApiUrl}/${phoneNumber}?text=${encodedMessage}&source=${encodedImageUrl}`;
+    // https://wa.me/+201066655063/?text=teststsafdssdsdf&source=http://209.250.237.58:5635/1689856026392_9235a46a-88c0-4509-a8f1-88a6ef4ef7a7.jpeg
+    this.iab.create(whatsappUrl, '_system');
   }
   showContentView(ev?: any) {
     this.loading = false;

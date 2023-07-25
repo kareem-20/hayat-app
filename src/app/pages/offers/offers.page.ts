@@ -95,4 +95,15 @@ export class OffersPage implements OnInit {
     };
     this.navCtrl.navigateForward('product-details');
   }
+
+  async redirectToWhatsApp(item: any) {
+    const phoneNumber = '+201066655063';
+    const message = item?.name + '\n' + item?.description;
+    const imageUrl = item?.image;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}&image=${encodeURIComponent(imageUrl)}`;
+
+    this.iab.create(whatsappUrl, '_system');
+  }
 }

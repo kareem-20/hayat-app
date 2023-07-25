@@ -40,6 +40,17 @@ export class ProductDetailsPage implements OnInit {
       this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
     else this.helpers.presentToast('الوتساب غير مفعل حاليا');
   }
+
+  async redirectToWhatsApp(item: any) {
+    const phoneNumber = '+201066655063';
+    const message = item?.name + '\n' + item?.description;
+    const imageUrl = item?.image;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}&image=${encodeURIComponent(imageUrl)}`;
+
+    this.iab.create(whatsappUrl, '_system');
+  }
   ngOnInit() {}
   dismiss() {
     this.modalCtrl.dismiss();
