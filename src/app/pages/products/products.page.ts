@@ -63,7 +63,12 @@ export class ProductsPage implements OnInit {
     return url.replace('&', '?');
   }
   async openWhatsapp(item: any) {
-    const msg = `${item?.name}\n${item?.description}\n${item?.price}`;
+    const msg =
+      `${item?.name}\n${item?.description}\n${item?.price}` +
+      '\n' +
+      'https://unsplash.com/photos/6VPEOdpFNAs';
+    console.log(`https://wa.me/+201066655063?text=${msg}`);
+
     if (this.whatsapp) {
       this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
       // await Share.share({
@@ -76,7 +81,18 @@ export class ProductsPage implements OnInit {
 
   async redirectToWhatsApp(item: any) {
     const phoneNumber = '+201066655063';
-    const message = item?.name + '\n' + item?.description;
+    const message =
+      item?.name +
+      '\n ' +
+      item?.description +
+      '\n ' +
+      'https://unsplash.com/photos/6VPEOdpFNAs' +
+      '\n ' +
+      item?.name +
+      '\n ' +
+      item?.description +
+      '\n ' +
+      'https://unsplash.com/photos/6VPEOdpFNAs';
     const imageUrl = item?.image;
     // WhatsApp Web API Endpoint
     const whatsappApiUrl = 'https://wa.me';
@@ -86,8 +102,8 @@ export class ProductsPage implements OnInit {
     const encodedImageUrl = encodeURIComponent(imageUrl);
 
     // Create the WhatsApp share link
-    const whatsappUrl = `${whatsappApiUrl}/${phoneNumber}?text=${encodedMessage}&source=${encodedImageUrl}`;
-    // https://wa.me/+201066655063/?text=teststsafdssdsdf&source=http://209.250.237.58:5635/1689856026392_9235a46a-88c0-4509-a8f1-88a6ef4ef7a7.jpeg
+    const whatsappUrl = `${whatsappApiUrl}/${phoneNumber}?text=${message}`;
+    // https://wa.me/+201066655063/?text=teststsafdssdsdf\nhttps://unsplash.com/photos/6VPEOdpFNAs
     this.iab.create(whatsappUrl, '_system');
   }
   showContentView(ev?: any) {

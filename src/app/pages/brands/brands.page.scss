@@ -33,6 +33,8 @@ ion-header {
       height: 115px;
       img {
         object-fit: cover;
+        height: 100%;
+        overflow: hidden;
       }
     }
     p {

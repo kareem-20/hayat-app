@@ -20,11 +20,20 @@ export class UiService {
     prefersDark.addEventListener('change', (media) => {
       this.toggleDarkTheme(media.matches);
     });
-    this.toggleDarkTheme(prefersDark.matches);
+    let color = localStorage.getItem('color') == 'true' ? true : false;
+    if (localStorage.getItem('color') == 'true') {
+      this.toggleDarkTheme(true);
+    } else {
+      this.toggleDarkTheme(false);
+    }
+
+    console.log(color);
+
     this.darkOn = prefersDark.matches;
   }
 
   toggleDarkTheme(enable: boolean) {
+    localStorage.setItem('color', `${enable}`);
     document.body.classList.toggle('dark', enable);
   }
 }
