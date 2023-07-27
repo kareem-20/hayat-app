@@ -26,10 +26,17 @@
           <p class="price">{{item?.price}} د.ع</p>
 
         </div>
-        <ion-button mode="ios" expand="block" color="light" fill="solid" (click)="redirectToWhatsApp(item)">
-          تواصل عبر
-          <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
-        </ion-button>
+        <ion-buttons>
+
+          <ion-button mode="ios" expand="block" color="light" fill="solid" (click)="redirectToWhatsApp(item)">
+            تواصل عبر
+            <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
+          </ion-button>
+          <ion-button (click)="addItem(item)">
+            <ion-icon slot="icon-only" [name]="item.addedToCart?'checkmark-done-outline':'cart-outline'"></ion-icon>
+            <!-- <ion-icon name=""></ion-icon> -->
+          </ion-button>
+        </ion-buttons>
       </div>
 
       <!-- <div class="item_box">

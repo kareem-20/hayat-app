@@ -46,7 +46,19 @@ ion-header {
     }
   }
 }
-swiper-container {
+swiper-container.type1 {
+  direction: ltr;
+  height: 225px;
+  text-align: center;
+  img {
+    object-fit: fill;
+    max-height: 225px;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+  }
+}
+swiper-container.type2 {
   direction: ltr;
   height: 225px;
   text-align: center;

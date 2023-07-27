@@ -6,6 +6,7 @@ import { Capacitor } from '@capacitor/core';
 import { Style, StatusBar } from '@capacitor/status-bar';
 import { register } from 'swiper/element/bundle';
 import { UiService } from './services/ui/ui.service';
+import { CartService } from './services/cart/cart.service';
 
 register();
 
@@ -20,6 +21,8 @@ export class AppComponent {
     private storage: Storage,
     private authService: AuthService,
     private navCtrl: NavController,
+    private cartService: CartService,
+
     private uiService: UiService
   ) {
     this.initApp();
@@ -30,6 +33,8 @@ export class AppComponent {
     // await this.checkUser();
     await this.setStatusBar(Style.Light, '#353542', false);
     this.uiService.watchTheme();
+    await this.cartService.reloadCart();
+
     this.navCtrl.navigateRoot('splash');
   }
 

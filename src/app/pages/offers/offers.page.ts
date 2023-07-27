@@ -52,10 +52,14 @@ export class OffersPage implements OnInit {
     return url.replace('&', '?');
   }
   async openWhatsapp(item: any) {
-    const msg = `${item?.name}\n${item?.description}\n${item?.price}`;
-    if (this.whatsapp)
+    const msg =
+      `${item?.name}\n${item?.description}\n${item?.price}` +
+      '\n ' +
+      item.image;
+
+    if (this.whatsapp) {
       this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
-    else this.helpers.presentToast('الوتساب غير مفعل حاليا');
+    } else this.helpers.presentToast('الوتساب غير مفعل حاليا');
   }
   showContentView(ev?: any) {
     this.loading = false;

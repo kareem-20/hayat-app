@@ -31,25 +31,29 @@ export class ProductDetailsPage implements OnInit {
     this.similars = this.dataService.myParams.similars;
     this.slide = this.dataService.myParams.slide;
     this.whatsapp = this.dataService.whatsapp;
-
-    console.log(this.similars);
   }
   async openWhatsapp(item: any) {
-    const msg = `${item?.name}\n${item?.description}\n${item?.price}`;
+    const msg =
+      `${item?.name}\n ${item?.description}\n ${item?.price}` +
+      '\n' +
+      item.image;
+    console.log(this.whatsapp);
+
     if (this.whatsapp)
       this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
     else this.helpers.presentToast('الوتساب غير مفعل حاليا');
   }
 
   async redirectToWhatsApp(item: any) {
-    const phoneNumber = '+201066655063';
-    const message = item?.name + '\n' + item?.description;
-    const imageUrl = item?.image;
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
-      message
-    )}&image=${encodeURIComponent(imageUrl)}`;
+    const msg =
+      `${item?.name}\n ${item?.description}\n ${item?.price}` +
+      '\n' +
+      item.image;
+    console.log(`https://wa.me/${this.whatsapp}?text=${msg}`);
 
-    this.iab.create(whatsappUrl, '_system');
+    if (this.whatsapp)
+      this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
+    else this.helpers.presentToast('الوتساب غير مفعل حاليا');
   }
   ngOnInit() {}
   dismiss() {

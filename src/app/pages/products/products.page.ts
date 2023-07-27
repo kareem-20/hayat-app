@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { HelpersService } from 'src/app/services/helpers/helpers.service';
 import { Share } from '@capacitor/share';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -25,6 +26,7 @@ export class ProductsPage implements OnInit {
     private navCtrl: NavController,
     private dataService: DataService,
     private helpers: HelpersService,
+    private cartService: CartService,
     private iab: InAppBrowser
   ) {}
 
@@ -42,17 +44,22 @@ export class ProductsPage implements OnInit {
     this.dataService.getData(this.endPoint).subscribe(
       (res: any) => {
         console.log(res);
-        this.products = res;
+        this.products = this.skip > 0 ? this.products.concat(res) : res;
         this.products.length
           ? this.showContentView(ev)
           : this.showEmptyView(ev);
+        this.checkItemsCart(this.products);
       },
       (err) => {
         this.showErrorView(ev);
       }
     );
   }
-
+  checkItemsCart(items: any[]) {
+    for (let item of items) {
+      this.cartService.getItemCart(item);
+    }
+  }
   get endPoint(): string {
     let url = '/product';
     if (this.categoryId) url += `&category=${this.categoryId}`;
@@ -64,9 +71,7 @@ export class ProductsPage implements OnInit {
   }
   async openWhatsapp(item: any) {
     const msg =
-      `${item?.name}\n${item?.description}\n${item?.price}` +
-      '\n' +
-      'https://unsplash.com/photos/6VPEOdpFNAs';
+      `${item?.name}\n${item?.description}\n${item?.price}` + '\n' + item.image;
     console.log(`https://wa.me/+201066655063?text=${msg}`);
 
     if (this.whatsapp) {
@@ -80,31 +85,12 @@ export class ProductsPage implements OnInit {
   }
 
   async redirectToWhatsApp(item: any) {
-    const phoneNumber = '+201066655063';
-    const message =
-      item?.name +
-      '\n ' +
-      item?.description +
-      '\n ' +
-      'https://unsplash.com/photos/6VPEOdpFNAs' +
-      '\n ' +
-      item?.name +
-      '\n ' +
-      item?.description +
-      '\n ' +
-      'https://unsplash.com/photos/6VPEOdpFNAs';
-    const imageUrl = item?.image;
-    // WhatsApp Web API Endpoint
-    const whatsappApiUrl = 'https://wa.me';
+    const msg =
+      `${item?.name}\n${item?.description}\n${item?.price}` + '\n' + item.image;
 
-    // Encode the message and image URL
-    const encodedMessage = encodeURIComponent(message);
-    const encodedImageUrl = encodeURIComponent(imageUrl);
-
-    // Create the WhatsApp share link
-    const whatsappUrl = `${whatsappApiUrl}/${phoneNumber}?text=${message}`;
-    // https://wa.me/+201066655063/?text=teststsafdssdsdf\nhttps://unsplash.com/photos/6VPEOdpFNAs
-    this.iab.create(whatsappUrl, '_system');
+    if (this.whatsapp) {
+      this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
+    } else this.helpers.presentToast('الوتساب غير مفعل حاليا');
   }
   showContentView(ev?: any) {
     this.loading = false;
@@ -155,5 +141,12 @@ export class ProductsPage implements OnInit {
       similars,
     };
     this.navCtrl.navigateForward('product-details');
+  }
+
+  addItem(product: any) {
+    if (product.addedToCart)
+      return this.helpers.presentToast('هذا المنتج مضاف بالفعل');
+    this.cartService.addItem(product);
+    product.addedToCart = true;
   }
 }

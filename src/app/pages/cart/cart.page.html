@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-forward-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-label>السلة</ion-label>
+    <!-- <div class="end ion-activatable" slot="end">
+      <ion-img src="../../../assets/images/user.svg"></ion-img>
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    </div> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="head animate__animated animate__fadeIn">
+      <div class="start">({{items.length}}) منتج</div>
+      <ion-button fill="clear" color="danger" (click)="clearCart()">حذف الكل</ion-button>
+    </div>
+    <!--  -->
+    <div class="items animate__animated animate__fadeIn">
+      <div class="item" *ngFor="let item of items;let i=index">
+        <div class="img"><ion-img [src]="item?.image"></ion-img></div>
+        <div class="content">
+          <div class="text">
+            <p>{{item?.name}}</p>
+            <h2>{{item?.price |number}}<span>د.ع</span></h2>
+            <p>{{item?.description}}</p>
+          </div>
+          <div class="delete ion-activatable" (click)="deleteItem(item,i)">
+            <ion-img src="../../../assets/images/delete.svg"></ion-img>
+            <p>حذف</p>
+            <ion-ripple-effect type="bounded"></ion-ripple-effect>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-footer class="animate__animated animate__fadeIn">
+    <!-- <div class="row"><p>المنتجات</p><p>405 <span>د.ع</span></p></div>
+    <div class="row"><p>خدمة التوصيل</p><p>40 <span>د.ع</span></p></div>
+    <div class="row bold"><p>المطلوب</p><p>4054 <span>د.ع</span></p></div> -->
+    <ion-button [disabled]="!items.length" (click)="sendInvoice()" expand="block">ارسال الطلب</ion-button>
+  </ion-footer>
+</ion-content>

@@ -3,7 +3,7 @@
 
     <ion-searchbar mode="ios" slot="start" placeholder="بحث"></ion-searchbar>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="nav('cart')">
         <img src="../../../assets/cart.svg" alt="">
       </ion-button>
       <ion-button>
@@ -14,9 +14,15 @@
 </ion-header>
 
 <ion-content>
-  <img src="../../../assets/Screenshot 2023-07-15 192803.png" alt="">
+  <swiper-container class="type1" [config]="slideOpts" [loop]="true">
+    <swiper-slide *ngFor="let slider of mainSlider">
+      <img [src]="slider?.image" alt="">
+    </swiper-slide>
 
-  <swiper-container [config]="slideOpts" [loop]="true">
+  </swiper-container>
+  <!-- <img src="../../../assets/Screenshot 2023-07-15 192803.png" alt=""> -->
+
+  <swiper-container class="type2" [config]="slideOpts" [loop]="true">
     <swiper-slide *ngFor="let slider of sliders" (click)="openSlideDetail(slider)">
       <img [src]="slider?.image" alt="">
     </swiper-slide>

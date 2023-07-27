@@ -69,4 +69,8 @@ export class BrandsPage implements OnInit {
     // this.skip = 0
     this.getBrands(ev);
   }
+
+  nav(route) {
+    this.navCtrl.navigateForward(route);
+  }
 }

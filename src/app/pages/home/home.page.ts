@@ -29,6 +29,7 @@ export class HomePage implements OnInit {
   stopLoading: boolean = false;
   categories: any[] = [];
   sliders: any[] = [];
+  mainSlider: any[] = [];
   constructor(
     private navCtrl: NavController,
     private dataService: DataService,
@@ -41,14 +42,17 @@ export class HomePage implements OnInit {
 
   getData(ev?: any): void {
     forkJoin([
-      this.dataService.getData(`/slide?status=1`),
+      this.dataService.getData(`/slide?status=1&type=2`),
       this.dataService.getData(`/category?status=1`),
+      this.dataService.getData(`/slide?status=1&type=1`),
     ]).subscribe(
       (res: any[]) => {
         console.log(res);
 
         this.sliders = res[0];
         this.categories = res[1];
+        this.mainSlider = res[2];
+
         this.categories.length
           ? this.showContentView(ev)
           : this.showEmptyView(ev);
