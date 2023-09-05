@@ -15,13 +15,14 @@ export class ProductsPage implements OnInit {
   categoryId: string;
   brand: any;
   products: any[] = [];
+  subBrands: any[] = [];
   loading: boolean = true;
   errorView: boolean = false;
   emptyView: boolean = false;
   searchQuery: string = '';
   skip: number = 0;
   whatsapp: string;
-
+  subBrand: any = null;
   constructor(
     private navCtrl: NavController,
     private dataService: DataService,
@@ -38,8 +39,16 @@ export class ProductsPage implements OnInit {
     this.whatsapp = this.dataService.whatsapp;
 
     this.getProducts();
+    this.getSubBrands();
   }
-
+  getSubBrands() {
+    this.dataService
+      .getData(`/subBrand?status=1&brand=${this.brand?._id}`)
+      .subscribe((res: any) => {
+        this.subBrands = res;
+        console.log(res);
+      });
+  }
   getProducts(ev?: any) {
     this.dataService.getData(this.endPoint).subscribe(
       (res: any) => {
@@ -65,28 +74,25 @@ export class ProductsPage implements OnInit {
     if (this.categoryId) url += `&category=${this.categoryId}`;
     if (this.brand) url += `&brand=${this.brand._id}`;
     if (this.skip) url += `&skip=${this.skip}`;
+    if (this.subBrand) url += `&subBrand=${this.subBrand}`;
     if (this.searchQuery) url += `&searchText=${this.searchQuery}`;
 
     return url.replace('&', '?');
   }
-  async openWhatsapp(item: any) {
-    const msg =
-      `${item?.name}\n${item?.description}\n${item?.price}` + '\n' + item.image;
-    console.log(`https://wa.me/+201066655063?text=${msg}`);
+  // async openWhatsapp(item: any) {
+  //   const msg =
+  //     `${item?.name}\n${item?.description}\n${item?.price}` + '\n' + item.image;
 
-    if (this.whatsapp) {
-      this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
-      // await Share.share({
-      //   title: item?.name,
-      //   text: item?.description,
-      //   url: item?.image,
-      // });
-    } else this.helpers.presentToast('الوتساب غير مفعل حاليا');
-  }
+  //   if (this.whatsapp) {
+  //     this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
+  //   } else this.helpers.presentToast('الوتساب غير مفعل حاليا');
+  // }
 
   async redirectToWhatsApp(item: any) {
     const msg =
-      `${item?.name}\n${item?.description}\n${item?.price}` + '\n' + item.image;
+      ` ${item.image[0]}
+    ${item?.name}  \r\n  ${item?.description} \r\n ${item?.price} د.ع` +
+      ' \r\n ';
 
     if (this.whatsapp) {
       this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');

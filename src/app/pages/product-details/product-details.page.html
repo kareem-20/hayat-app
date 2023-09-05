@@ -11,12 +11,19 @@
 </ion-header>
 
 <ion-content>
+  <swiper-container class="type1" [config]="slideOpts" [loop]="true" [pagination]="true">
+    <swiper-slide *ngFor="let slid of sliders">
+      <img [src]="slid" alt="">
+    </swiper-slide>
+
+  </swiper-container>
   <div class="container">
+
     <div class="product_box">
 
-      <div class="image_box">
-        <img [src]="item?.image" alt="">
-      </div>
+      <!-- <div class="image_box">
+        <img [src]="item?.image[0]" alt="">
+      </div> -->
       <h4>{{item?.name}}</h4>
       <p>{{item?.description}}</p>
 
@@ -24,12 +31,11 @@
         {{item?.price}} د.ع
       </div>
     </div>
-    <div class="title" *ngIf="similars?.length">منتجات مشابهة</div>
+    <div class="title" *ngIf="similars?.length">قد يعجبك</div>
     <div class="products">
       <div class="product" *ngFor="let item of similars">
-
         <div class="img">
-          <img [src]="item?.image" alt="">
+          <img [src]="item?.image[0]" alt="">
         </div>
         <div class="text">
           <p class="name">{{item?.name}}</p>
@@ -50,7 +56,7 @@
   </div>
   <div class="footer_box">
 
-    <ion-button mode="ios" expand="block" fill="solid" shape="round" (click)="redirectToWhatsApp(item)">
+    <ion-button mode="ios" expand="block" fill="solid" shape="round" (click)="openWhatsapp(item)">
       تواصل عبر
       <img slot="end" src="../../../assets/account/logo-whatsapp (1).png" alt="">
     </ion-button>

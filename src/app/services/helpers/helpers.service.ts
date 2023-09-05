@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { Capacitor } from '@capacitor/core';
+import { LoadingController, Platform, ToastController } from '@ionic/angular';
+import { StatusBar } from '@capacitor/status-bar';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HelpersService {
   isLoading: boolean = false;
 
   constructor(
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController,
-  ) { }
+    private platForm: Platform,
+    private toastCtrl: ToastController
+  ) {}
 
   async showLoading(message = '') {
     this.isLoading = true;
@@ -45,5 +48,12 @@ export class HelpersService {
     });
 
     await toast.present();
+  }
+  async setStatusBar(style: any, color: string, overlay: boolean) {
+    if (Capacitor.getPlatform() == 'web') return;
+    await StatusBar.setStyle({ style });
+    if (this.platForm.is('ios')) return;
+    await StatusBar.setBackgroundColor({ color });
+    await StatusBar.setOverlaysWebView({ overlay });
   }
 }

@@ -9,16 +9,26 @@
 
 <ion-content>
   <div class="container">
+    <div class="segmentContainer">
+      <div class="segmentBox" [class.active]="!subBrand" (click)="subBrand =null;getProducts()">
+        الكل
+      </div>
+      <div class=" segmentBox" *ngFor="let sub of subBrands" [class.active]="subBrand ==sub?._id "
+        (click)="subBrand =sub?._id ;getProducts()">
+        {{sub?.name}}
+      </div>
+    </div>
     <ion-item>
       <ion-input type="text" placeholder="ابحث هنا" [(ngModel)]="searchQuery" (ionInput)="onChange($event)"></ion-input>
       <ion-icon slot="end" name="close"></ion-icon>
     </ion-item>
 
+
     <div class="items_box">
 
       <div class="item_box" *ngFor="let item of products;let i = index;trackBy:trackFn">
         <div class="image" (click)="detailsItem(item,i) ">
-          <img [src]="item?.image" alt="">
+          <img [src]="item?.image[0]" alt="">
         </div>
         <div class="body_item" (click)="detailsItem(item,i) ">
           <h2>{{item?.name}}</h2>

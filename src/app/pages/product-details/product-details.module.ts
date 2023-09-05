@@ -1,4 +1,8 @@
-import { NgModule } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+  NgModule,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,8 +17,9 @@ import { ProductDetailsPage } from './product-details.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductDetailsPageRoutingModule
+    ProductDetailsPageRoutingModule,
   ],
-  declarations: [ProductDetailsPage]
+  declarations: [ProductDetailsPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class ProductDetailsPageModule {}

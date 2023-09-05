@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
@@ -13,8 +15,13 @@ export class BrandsPage implements OnInit {
   loading: boolean = true;
   errorView: boolean = false;
   emptyView: boolean = false;
+  cartCount: number;
+  subscription: Subscription;
+  skip: number = 0;
   constructor(
     private dataService: DataService,
+    private cartService: CartService,
+
     private navCtrl: NavController
   ) {}
 
@@ -23,15 +30,23 @@ export class BrandsPage implements OnInit {
     this.getBrands();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.watchCart();
+  }
+  watchCart() {
+    this.subscription = this.cartService.count.subscribe(
+      (res) => (this.cartCount = res)
+    );
+    console.log(this.cartCount);
+  }
 
   getBrands(ev?: any) {
-    let url = '/brand';
-    if (this.categoryId) url += `?category=${this.categoryId}`;
+    let url = '/brand?status=1';
+    if (this.categoryId) url += `&category=${this.categoryId}`;
     this.dataService.getData(url).subscribe(
       (res: any) => {
         console.log(res);
-        this.brands = res;
+        this.brands = this.skip > 0 ? this.brands.concat(res) : res;
         this.brands.length ? this.showContentView(ev) : this.showEmptyView(ev);
       },
       (err) => {
@@ -72,5 +87,9 @@ export class BrandsPage implements OnInit {
 
   nav(route) {
     this.navCtrl.navigateForward(route);
+  }
+  loadData(ev) {
+    this.skip++;
+    this.getBrands(ev);
   }
 }

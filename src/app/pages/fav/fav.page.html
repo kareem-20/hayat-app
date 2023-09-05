@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-forward-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>المنتجات المفضلة</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+
+
+    <div class="items_box">
+
+      <div class="item_box" *ngFor="let item of fav;let i = index;">
+        <span class="fav" [ngClass]="item.favorite ? 'active' : '' " (click)="toggleFav(item)">
+          <img class="animate__animated animate__zoomIn"
+            [src]="item.favorite ? '../../../assets/like_act.svg' :'../../../assets/like.svg'" alt="">
+        </span>
+        <div class="image" (click)="detailsItem(item,i) ">
+          <img [src]="item?.image[0]" alt="">
+        </div>
+        <div class="body_item" (click)="detailsItem(item,i) ">
+          <h2>{{item?.name}}</h2>
+          <p>{{item?.description}}</p>
+          <p class="price">{{item?.price}} د.ع</p>
+
+        </div>
+        <ion-buttons>
+
+          <ion-button mode="ios" expand="block" color="light" fill="solid" (click)="redirectToWhatsApp(item)">
+            تواصل عبر
+            <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
+          </ion-button>
+          <ion-button (click)="addItem(item)">
+            <ion-icon slot="icon-only" [name]="item.addedToCart?'checkmark-done-outline':'cart-outline'"></ion-icon>
+            <!-- <ion-icon name=""></ion-icon> -->
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+
+    </div>
+
+  </div>
+</ion-content>

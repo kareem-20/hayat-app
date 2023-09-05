@@ -16,7 +16,16 @@ export class ProductDetailsPage implements OnInit {
   similars: any[] = [];
   slide: any;
   whatsapp: string;
-
+  sliders: any = [];
+  slideOpts = {
+    // slidesPerView: 1.09,
+    // spaceBetween: 10,
+    // autoplay: true,
+    autoplay: true,
+    slidesPerView: 1,
+    spaceBetween: 12,
+    pagination: true,
+  };
   constructor(
     private dataService: DataService,
     private navCtrl: NavController,
@@ -31,12 +40,13 @@ export class ProductDetailsPage implements OnInit {
     this.similars = this.dataService.myParams.similars;
     this.slide = this.dataService.myParams.slide;
     this.whatsapp = this.dataService.whatsapp;
+    this.sliders = this.item.image;
   }
   async openWhatsapp(item: any) {
     const msg =
-      `${item?.name}\n ${item?.description}\n ${item?.price}` +
-      '\n' +
-      item.image;
+      ` ${item.image[0]}
+    ${item?.name}  \r\n  ${item?.description} \r\n ${item?.price} د.ع` +
+      ' \r\n ';
     console.log(this.whatsapp);
 
     if (this.whatsapp)
@@ -44,17 +54,6 @@ export class ProductDetailsPage implements OnInit {
     else this.helpers.presentToast('الوتساب غير مفعل حاليا');
   }
 
-  async redirectToWhatsApp(item: any) {
-    const msg =
-      `${item?.name}\n ${item?.description}\n ${item?.price}` +
-      '\n' +
-      item.image;
-    console.log(`https://wa.me/${this.whatsapp}?text=${msg}`);
-
-    if (this.whatsapp)
-      this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
-    else this.helpers.presentToast('الوتساب غير مفعل حاليا');
-  }
   ngOnInit() {}
   dismiss() {
     this.modalCtrl.dismiss();

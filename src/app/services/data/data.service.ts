@@ -11,7 +11,7 @@ export class DataService {
   instagram: string;
   messenger: string;
   private params: any = {};
-  baseURL: string = 'http://209.250.237.58:5635/api';
+  baseURL: string = 'https://alhyat.iraqsapp.com/api';
 
   constructor(private http: HttpClient) {}
 

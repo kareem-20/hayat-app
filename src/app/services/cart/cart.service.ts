@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { BehaviorSubject } from 'rxjs';
 const ITEMS = 'items';
+const FAV = 'fav';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,12 +14,15 @@ export class CartService {
   clientPrice: number;
   cartCount: BehaviorSubject<number> = new BehaviorSubject(0);
   deliveryCost: number;
+
+  public fav: any[] = [];
   constructor(private storage: Storage) {}
 
   async reloadCart() {
     this.items = (await this.storage.get(ITEMS)) || [];
     console.log('cart', this.items);
-
+    const fav = await this.storage.get(FAV);
+    fav == null ? (this.fav = []) : (this.fav = fav);
     this.cartCount.next(this.items.length);
   }
 
@@ -76,5 +81,20 @@ export class CartService {
 
   get count() {
     return this.cartCount.asObservable();
+  }
+
+  toggleFav(item: any) {
+    if (item?.favorite) {
+      this.fav.push(item);
+    } else {
+      this.fav = this.fav.filter((f) => f._id != item._id);
+    }
+    return this.storage.set(FAV, this.fav);
+  }
+  getItemFavourit(item: any) {
+    let filter = this.fav.filter((p) => p._id == item._id);
+    if (filter[0]) {
+      item.favorite = true;
+    }
   }
 }

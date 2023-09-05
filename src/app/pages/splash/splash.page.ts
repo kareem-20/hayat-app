@@ -18,10 +18,10 @@ export class SplashPage implements OnInit {
     private fcmService: FcmService,
     private dataService: DataService
   ) {
+    this.getSetting();
     setTimeout(() => {
       // this.checkUser();
       this.initApp();
-      this.getSetting();
     }, 3000);
   }
 

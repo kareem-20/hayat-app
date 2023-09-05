@@ -28,6 +28,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('../brands/brands.module').then((m) => m.BrandsPageModule),
       },
+      {
+        path: 'fav',
+        loadChildren: () =>
+          import('../fav/fav.module').then((m) => m.FavPageModule),
+      },
     ],
   },
 ];

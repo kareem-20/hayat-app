@@ -4,11 +4,13 @@
     <ion-searchbar mode="ios" slot="start" placeholder="بحث"></ion-searchbar>
     <ion-buttons slot="end">
       <ion-button (click)="nav('cart')">
+        <ion-badge mode="ios">{{cartCount}}</ion-badge>
+
         <img src="../../../assets/cart.svg" alt="">
       </ion-button>
-      <ion-button>
+      <!-- <ion-button>
         <img src="../../../assets/fav.svg" alt="">
-      </ion-button>
+      </ion-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -102,6 +104,91 @@
           <img src="../../../assets/images/perfume.png" alt="">
         </div>
       </div> -->
+
     </div>
+
+    <div class="title" *ngIf="recently.length">
+      <h2>
+        وصل حديثا
+      </h2>
+    </div>
+    <div class="items_box">
+
+      <div class="item_box" *ngFor="let item of recently;let i = index;trackBy:trackFn">
+        <span class="fav" [ngClass]="item.favorite ? 'active' : '' " (click)="toggleFav(item)">
+          <img class="animate__animated animate__zoomIn"
+            [src]="item.favorite ? '../../../assets/like_act.svg' :'../../../assets/like.svg'" alt="">
+        </span>
+        <div class="image" (click)="detailsItem(item,i) ">
+          <img [src]="item?.image[0]" alt="">
+        </div>
+        <div class="body_item" (click)="detailsItem(item,i) ">
+          <h2>{{item?.name}}</h2>
+          <p>{{item?.description}}</p>
+          <p class="price">{{item?.price}} د.ع</p>
+
+        </div>
+        <ion-buttons>
+
+          <ion-button mode="ios" expand="block" color="light" fill="solid" (click)="redirectToWhatsApp(item)">
+            تواصل عبر
+            <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
+          </ion-button>
+          <ion-button (click)="addItem(item)">
+            <ion-icon slot="icon-only" [name]="item.addedToCart?'checkmark-done-outline':'cart-outline'"></ion-icon>
+            <!-- <ion-icon name=""></ion-icon> -->
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+      <!-- <div class="item_box">
+        <div class="image">
+          <img src="../../../assets/offers/82829_SCMOI_Closed_R-1.png" alt="">
+        </div>
+        <div class="body_item">
+          <h2>HUAWEI Phone</h2>
+          <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى</p>
+          <p class="price">658.000 د.ع</p>
+
+        </div>
+        <ion-button mode="ios" expand="block" color="light" fill="solid">
+          تواصل عبر
+          <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
+        </ion-button>
+      </div>
+
+      <div class="item_box">
+        <div class="image">
+          <img src="../../../assets/offers/82829_SCMOI_Closed_R-1.png" alt="">
+        </div>
+        <div class="body_item">
+          <h2>HUAWEI Phone</h2>
+          <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى</p>
+          <p class="price">658.000 د.ع</p>
+
+        </div>
+        <ion-button mode="ios" expand="block" color="light" fill="solid">
+          تواصل عبر
+          <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
+        </ion-button>
+      </div>
+
+      <div class="item_box">
+        <div class="image">
+          <img src="../../../assets/offers/82829_SCMOI_Closed_R-1.png" alt="">
+        </div>
+        <div class="body_item">
+          <h2>HUAWEI Phone</h2>
+          <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى</p>
+          <p class="price">658.000 د.ع</p>
+
+        </div>
+        <ion-button mode="ios" expand="block" color="light" fill="solid">
+          تواصل عبر
+          <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
+        </ion-button>
+      </div> -->
+    </div>
+
   </div>
 </ion-content>

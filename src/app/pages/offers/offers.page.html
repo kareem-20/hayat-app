@@ -15,7 +15,7 @@
 
       <div class="item_box" *ngFor="let item of products;let i = index;trackBy:trackFn">
         <div class="image" (click)="detailsItem(item,i) ">
-          <img [src]="item?.image" alt="">
+          <img [src]="item?.image[0]" alt="">
         </div>
         <div class="body_item" (click)="detailsItem(item,i) ">
           <h2>{{item?.name}}</h2>
@@ -24,7 +24,7 @@
           <p class="price">{{item?.discountPrice}} د.ع</p>
 
         </div>
-        <ion-button mode="ios" expand="block" color="light" fill="solid" (click)="redirectToWhatsApp(item)">
+        <ion-button mode="ios" expand="block" color="light" fill="solid" (click)="openWhatsapp(item)">
           تواصل عبر
           <img src="../../../assets/Icon ionic-logo-whatsapp.svg" alt="">
         </ion-button>

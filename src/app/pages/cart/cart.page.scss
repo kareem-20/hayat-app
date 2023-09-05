@@ -181,5 +181,9 @@ ion-footer {
     color: #fff;
     font-size: 14px;
     font-family: "bold";
+    border-radius: 5px;
+    background: #df1b33;
+    --border-radius: 5px;
+    --background: #df1b33;
   }
 }

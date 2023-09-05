@@ -31,7 +31,8 @@ export class AppComponent {
     await this.platForm.ready();
     await this.storage.create();
     // await this.checkUser();
-    await this.setStatusBar(Style.Light, '#353542', false);
+    await this.setStatusBar(Style.Light, '#ffffff', false);
+
     this.uiService.watchTheme();
     await this.cartService.reloadCart();
 

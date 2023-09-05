@@ -8,11 +8,13 @@
 
     <ion-buttons slot="end">
       <ion-button (click)="nav('cart')">
+        <ion-badge mode="ios">{{cartCount}}</ion-badge>
+
         <img src="../../../assets/cart.svg" alt="">
       </ion-button>
-      <ion-button>
+      <!-- <ion-button>
         <img src="../../../assets/fav.svg" alt="">
-      </ion-button>
+      </ion-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -90,4 +92,8 @@
       </ion-text>
     </div>
   </div>
+  <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

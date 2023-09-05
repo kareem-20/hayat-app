@@ -6,6 +6,13 @@ ion-header {
       width: 70% !important;
     }
   }
+
+  ion-badge {
+    // font-weight: bold;
+    // right: 50%;
+    // top: 1px;
+    // transform: translateX(14px);
+  }
 }
 .container {
   padding-inline: 16px;
@@ -100,3 +107,98 @@ swiper-container.type2 {
 //   border-radius: 20px;
 //   box-shadow: 0px 6px 20px #111;
 // }
+.items_box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+  //   margin-inline: 16px;
+  .item_box {
+    position: relative;
+    border: 1px solid #f3f4f5;
+    border-radius: 5px;
+    // height: 320px;
+    box-shadow: 0px 3px 6px #cccccc80;
+
+    span.fav {
+      position: absolute;
+      top: 8px;
+      left: 5px;
+      border-radius: 20px;
+      padding: 2px;
+      width: 30px;
+      height: 30px;
+      background-color: #f3f3f3;
+
+      img {
+        width: fit-content;
+        object-fit: contain;
+        height: fit-content;
+      }
+    }
+
+    // span.fav.active {
+    //   background-color: #fff !important;
+    //   border: 1px solid #b3191959 !important;
+    // }
+
+    p {
+      font-family: "bold";
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      white-space: break-spaces;
+      overflow: hidden;
+    }
+
+    .image {
+      height: 140px;
+      img {
+        display: block;
+        margin-inline: auto;
+        max-height: 100%;
+        overflow: hidden;
+        object-fit: cover;
+      }
+    }
+    ion-ripple-effect {
+      border-radius: 5px;
+    }
+
+    .body_item {
+      padding: 3px 8px 0;
+      h2 {
+        font-size: 16px;
+        font-family: "bold";
+        margin: 0;
+        margin-bottom: 5px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        white-space: break-spaces;
+        overflow: hidden;
+      }
+      p {
+        font-size: 14px;
+        color: #707070;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        white-space: break-spaces;
+        overflow: hidden;
+      }
+      .price {
+        color: #df1b33;
+        font-size: 18px;
+      }
+    }
+    ion-button {
+      font-size: 14px;
+      img {
+        display: inline-block;
+        margin-inline-start: 14px;
+      }
+    }
+  }
+}

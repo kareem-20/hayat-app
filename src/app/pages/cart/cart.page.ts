@@ -78,8 +78,11 @@ export class CartPage implements OnInit {
         this.helpers.dismissLoading();
         this.clearCart();
         if (this.whatsapp) {
-          // ${this.whatsapp}
-          this.iab.create(`https://wa.me/+201066655063?text=${res}`, '_system');
+          //
+          this.iab.create(
+            `https://wa.me/${this.whatsapp}?text=${res}`,
+            '_system'
+          );
         } else this.helpers.presentToast('الوتساب غير مفعل حاليا');
       },
       (err) => {

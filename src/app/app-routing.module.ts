@@ -52,6 +52,10 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
   },
+  {
+    path: 'fav',
+    loadChildren: () => import('./pages/fav/fav.module').then( m => m.FavPageModule)
+  },
 ];
 
 @NgModule({

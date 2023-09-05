@@ -44,7 +44,7 @@ export class OffersPage implements OnInit {
     );
   }
   get endPoint(): string {
-    let url = '/product';
+    let url = '/product&status=1';
     url += `&discount=${true}`;
     if (this.skip) url += `&skip=${this.skip}`;
     if (this.searchQuery) url += `&searchText=${this.searchQuery}`;
@@ -53,10 +53,9 @@ export class OffersPage implements OnInit {
   }
   async openWhatsapp(item: any) {
     const msg =
-      `${item?.name}\n${item?.description}\n${item?.price}` +
-      '\n ' +
-      item.image;
-
+      ` ${item.image[0]}
+      ${item?.name}  \r\n  ${item?.description} \r\n ${item?.price} د.ع` +
+      ' \r\n ';
     if (this.whatsapp) {
       this.iab.create(`https://wa.me/${this.whatsapp}?text=${msg}`, '_system');
     } else this.helpers.presentToast('الوتساب غير مفعل حاليا');
@@ -100,14 +99,14 @@ export class OffersPage implements OnInit {
     this.navCtrl.navigateForward('product-details');
   }
 
-  async redirectToWhatsApp(item: any) {
-    const phoneNumber = '+201066655063';
-    const message = item?.name + '\n' + item?.description;
-    const imageUrl = item?.image;
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
-      message
-    )}&image=${encodeURIComponent(imageUrl)}`;
+  // async redirectToWhatsApp(item: any) {
+  //   const phoneNumber = '+201066655063';
+  //   const message = item?.name + '\n' + item?.description;
+  //   const imageUrl = item?.image;
+  //   const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+  //     message
+  //   )}&image=${encodeURIComponent(imageUrl)}`;
 
-    this.iab.create(whatsappUrl, '_system');
-  }
+  //   this.iab.create(whatsappUrl, '_system');
+  // }
 }
